@@ -1,90 +1,124 @@
-# AI Blackjack Player
+# 🎮 AI Blackjack Player
 
-A beginner-friendly Artificial Intelligence project that learns to play a simplified game of Blackjack using **Q-learning**, a Reinforcement Learning algorithm.
+An AI-powered Blackjack player built using **Python and Reinforcement Learning (Q-Learning)**. The agent learns how to play Blackjack by interacting with a simulated game environment and improving its decisions through trial and error.
 
-The agent practises simulated rounds, updates its Q-values from rewards, and gradually learns when to **Hit** or **Stand**.
+## 🚀 Features
 
-## Features
+- Blackjack game simulation.
+- AI agent powered by Q-Learning.
+- Learns when to **Hit** or **Stand**.
+- Uses an epsilon-greedy strategy to balance exploration and exploitation.
+- Trains over thousands of game episodes.
+- Evaluates the agent's performance.
+- Saves and loads the trained Q-table.
+- Displays the learned strategy.
+- Includes automated unit tests.
 
-- Train the agent through simulated Blackjack rounds.
-- Use Q-learning and epsilon-greedy exploration.
-- Watch the trained AI play against the dealer.
-- Evaluate the agent over thousands of rounds (wins, losses, pushes).
-- Display a text chart of the learned strategy.
-- Save and reload the learned Q-table as JSON.
-- Includes unit tests.
+## 🧠 How It Works
 
-## Technologies
+The AI uses **Q-Learning**, a reinforcement learning algorithm.
 
-Python 3, Reinforcement Learning, Q-learning, epsilon-greedy exploration, JSON, and `unittest`.
+1. The agent observes the current game state.
+2. It chooses an action: Hit or Stand.
+3. The game provides a reward based on the result.
+4. The agent updates its Q-table.
+5. After many episodes, it learns which actions are better in different situations.
 
-No external packages or paid APIs are required.
+### State Information
 
-## Run the project
+The agent considers:
 
-1. Extract the ZIP file.
-2. Open a terminal inside the `blackjack_ai_agent` folder.
-3. Run:
+- Player's current total.
+- Dealer's visible card.
+- Whether the player has a usable Ace.
+
+### Rewards
+
+| Game Result | Reward |
+|---|---:|
+| Win | +1 |
+| Loss | -1 |
+| Draw | 0 |
+
+## 🛠️ Technologies Used
+
+- Python
+- Reinforcement Learning
+- Q-Learning
+- NumPy-free implementation
+- JSON for saving the trained model
+- Matplotlib for strategy visualization
+
+## 📂 Project Structure
+
+```text
+AI-Blackjack-Player/
+│
+├── blackjack.py
+├── main.py
+├── README.md
+├── .gitignore
+│
+└── tests/
+    └── test_blackjack.py
+```
+
+## ⚙️ Installation and Usage
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/AI-Blackjack-Player.git
+```
+
+### 2. Open the project folder
+
+```bash
+cd AI-Blackjack-Player
+```
+
+### 3. Run the program
 
 ```bash
 python main.py
 ```
 
-On some Linux systems, use `python3 main.py`.
+### 4. Train the AI
 
-Choose **1** to train the AI (start with 100,000 rounds). The learned model is saved in `blackjack_q_table.json`. Then choose **2** to watch it play, **3** to evaluate it, or **4** to view its learned strategy.
+Select the training option from the program menu. The agent will learn by playing simulated Blackjack games.
 
-## How it works
+## 📊 Learning Approach
 
-### State
-The agent observes its current hand total, the dealer's visible card, and whether it has a usable ace.
+The project uses an epsilon-greedy action-selection strategy:
 
-### Actions
-The agent can **Hit** (draw a card) or **Stand** (stop drawing).
+- **Exploration:** The AI tries different actions to discover better strategies.
+- **Exploitation:** The AI chooses the action with the highest learned Q-value.
 
-### Reward
-A win gives `+1`, a loss gives `-1`, and a tie (push) gives `0`.
+The Q-table stores the estimated value of taking each action in a particular game state.
 
-### Q-learning
-The agent stores values for state/action pairs and updates them using the reward and the best estimated value of the next state:
+## ⚠️ Limitations
 
-`Q(s, a) = Q(s, a) + alpha * (reward + gamma * max Q(next_state) - Q(s, a))`
+- The game uses an infinite-deck approximation.
+- The dealer stands on soft 17.
+- Splitting, doubling down, and insurance are not implemented.
+- The learned strategy is based on the simplified game environment.
 
-For a terminal action, the update uses the final reward because there is no next state.
+## 🎯 Future Improvements
 
-### Exploration
-Epsilon-greedy selection sometimes tries a random action. Epsilon decreases during training so the agent gradually relies more on its learned values.
+- Implement Double Down and Split.
+- Add card counting.
+- Build a graphical user interface.
+- Compare Q-Learning with Monte Carlo methods.
+- Improve the agent through more advanced reinforcement learning techniques.
 
-## Rules and limitations
+## 👨‍💻 Author
 
-This is a simplified learning simulation:
+**Swayam Anup Shrikondwar**
 
-- An infinite-deck approximation is used (cards are sampled with replacement).
-- The dealer stands on all 17s, including soft 17.
-- The AI chooses only Hit or Stand.
-- Splitting, doubling down, insurance, betting, and casino payouts are not implemented.
-- It is an educational simulation, not a gambling or profit-prediction system.
+B.Sc. Computer Science Student
 
-## Run tests
+[GitHub Profile](https://github.com/sasgoku)
 
-```bash
-python -m unittest discover -s tests -v
-```
+---
 
-## Future improvements
-
-- Add a graphical interface with Pygame or Streamlit.
-- Add Double Down and Split actions.
-- Plot training and evaluation results with Matplotlib.
-- Compare Q-learning against a basic Blackjack strategy.
-- Add a human-versus-AI mode.
-
-## CV description
-
-**AI Blackjack Player using Reinforcement Learning | Python**
-
-- Developed an AI Blackjack agent using Q-learning to learn Hit/Stand decisions through simulated gameplay.
-- Implemented epsilon-greedy exploration and reward-based Q-value updates.
-- Added training, model persistence, strategy visualization, and evaluation features to measure performance over simulated rounds.
-
-Only list this project on your CV after you have run it, understood the main functions, and can explain Q-learning in an interview.
+*This project was developed as a practical exploration of Python programming, game simulation, and reinforcement learning.*
